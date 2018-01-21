@@ -10,6 +10,18 @@ var users = require('./routes/users');
 
 var app = express();
 
+var mongoose = require('mongoose');
+
+var mongoDb = 'mongodb://godwinekuma:godwin1699@ds249757.mlab.com:49757/geo-local-library';
+mongoose.connect(mongoDb, {
+  useMongoClient: true
+});
+
+mongoose.Promise = global.Promise;
+var db = mongoose.connection;
+
+db.on('error', console.error.bind(console, 'Error connecting to the Database'));
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
